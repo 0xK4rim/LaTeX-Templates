@@ -1,0 +1,73 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{handout}
+
+
+% page geometry
+\RequirePackage[margin=1in]{geometry}
+
+
+% math and symbols
+\RequirePackage{amsmath,amssymb,mathtools}
+\RequirePackage{microtype}
+
+
+% header/footer
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[L]{\CourseName}
+\fancyhead[R]{\handoutdate}
+\fancyfoot[C]{\thepage}
+
+
+% nicer lists
+\RequirePackage{enumitem}
+\setlist{nosep}
+
+
+\RequirePackage{tcolorbox}
+\tcbuselibrary{breakable}
+\newtcolorbox{problembox}[1][]
+{colback=white,colframe=black!60,breakable,enhanced,sharp corners,left=6pt,right=6pt,boxrule=0.6pt,title=#1}
+
+
+\newenvironment{problem}[1][Problem]
+{\begin{problembox}[#1]\noindent}
+{\end{problembox}}
+
+
+\newtcolorbox{solutionbox}[1][]
+{colback=black!5,colframe=black!45,breakable,enhanced,sharp corners,left=6pt,right=6pt,boxrule=0.6pt,title=#1}
+
+
+\newenvironment{solution}
+{\begin{solutionbox}[Solution]\noindent}
+{\end{solutionbox}}
+
+
+% convenience metadata commands (set in the main .tex)
+\newcommand{\CourseName}{MIT 6.1200J}
+\newcommand{\CourseCode}{6.1200J}
+\newcommand{\Instructor}{Instructor}
+\newcommand{\handouttitle}{Handout}
+\newcommand{\handoutdate}{\today}
+
+
+% small title macro
+\newcommand{\makelabtitle}{%
+\begin{center}
+{\LARGE\bfseries \handouttitle}\\[6pt]
+{\large \CourseCode{} --- \CourseName}\\[3pt]
+{\small \Instructor \quad|\quad \handoutdate}
+\end{center}
+\vspace{6pt}
+\hrule
+\vspace{12pt}
+}
+
+
+% small local tweaks
+\RequirePackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue}
